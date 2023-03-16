@@ -1,0 +1,70 @@
+﻿@model MangaViewModel
+
+<h3>Edit manga</h3>
+
+<form asp asp-controller="Home" asp-action="EditManga">
+
+    <label class="col-form-label" asp-for="Title"></label>
+    <input class="form-control" asp-for="Title" />
+
+    <label class="col-form-label" asp-for="Author"></label>
+    <input class="form-control" asp-for="Author" />
+
+    <label class="col-form-label" asp-for="Genre"></label>
+    <input class="form-control" asp-for="Genre" />
+
+    <label class="col-form-label" asp-for="Description"></label>
+    <textarea class="form-control" asp-for="Description"></textarea>
+
+    <label class="col-form-label" asp-for="Price"></label>
+    <input class="form-control" asp-for="Price" />
+
+    <label class="col-form-label" asp-for="PictureUrl"></label>
+    <input class="form-control" asp-for="PictureUrl" />
+
+    <label class="col-form-label" asp-for="ReleaseDate"></label>
+    <input class="form-control" asp-for="ReleaseDate" />
+
+    <input hidden asp-for="Id"/>
+
+    <div>
+        <button class="btn btn-primary">Edit manga</button>
+        <button type="button" class="btn btn-outline-danger  " data-toggle="modal" data-target="#delete-modal">Delete</button>
+
+    </div>
+    
+</form>
+
+<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">DELETE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete <b>@Model.Title by @Model.Author</b>?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="deleteManga()" type="button" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script>
+        const deleteManga = () =>{
+        fetch("/Home/Delete?mangaId="+@Model.Id)
+            .then(() => redirectToIndex()
+            .catch((error) => {
+                console.error("Error:", error);
+            }));
+        }
+
+        const redirectToIndex = () =>{
+            window.location="/Home/Index";
+        }
+    </script>

@@ -1,0 +1,30 @@
+﻿@model MangaViewModel
+
+<h3>Add manga</h3>
+
+<form asp asp-controller="Home" asp-action="AddManga">
+
+   <label class="col-form-label" asp-for="Title"></label>
+    <input class="form-control" asp-for="Title" />
+
+    <label class="col-form-label" asp-for="Author"></label>
+    <input class="form-control" asp-for="Author" />
+
+    <label class="col-form-label" asp-for="Genre"></label>
+    <input class="form-control" asp-for="Genre" />
+
+    <label class="col-form-label" asp-for="Description"></label>
+    <textarea class="form-control" asp-for="Description"></textarea>
+
+    <label class="col-form-label" asp-for="Price"></label>
+    <input class="form-control" asp-for="Price" />
+
+    <label class="col-form-label" asp-for="PictureUrl"></label>
+    <input class="form-control" asp-for="PictureUrl" />
+
+    <label class="col-form-label" asp-for="ReleaseDate"></label>
+    <input class="form-control" asp-for="ReleaseDate" />
+
+    <button class="btn btn-primary">Add manga</button>
+
+</form>

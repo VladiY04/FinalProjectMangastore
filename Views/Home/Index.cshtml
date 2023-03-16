@@ -1,0 +1,93 @@
+﻿@model MangaModelViewList
+
+@if (Model == null || Model.List == null || Model.List.Count == 0)
+{
+    <h2>No available manga at the moment</h2>
+    <div>Maybe you want to<a href = "/Home/AddManga"> add a manga</a></div>
+}
+else
+{
+
+    @foreach (var manga in Model.List)
+    {
+        <div onclick="loadManga('@manga.Id')" id="manga-container" class="container">
+            <h4>@manga.Title : @manga.Author</h4>
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="@manga.PictureUrl" class="img-thumbnail" />
+                </div>
+                <div class="col-md-9">
+                    @manga.Description
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    Price: @manga.Price
+                </div>
+                <div class="col text-right">
+                    Genre: @manga.Genre
+                </div>
+            </div>
+        </div>
+        <hr />
+
+    }
+    <nav aria-label="...">
+        <ul class="pagination">
+            
+                @if(Model.CurrentPage == 1)
+                {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+            }
+            else
+            {
+                 <li class="page-item ">
+                    <a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage-1)" tabindex="-1">Previous</a>
+                </li>
+            }
+                
+            
+            @for (int i = 0; i < Model.TotalPages; i++)
+            {
+                @if (i + 1 == Model.CurrentPage)
+                {
+                    <li class="page-item active">
+                        <a class="page-link" href="/Home/Index?currentPage=@(i+1)">@(i + 1) <span class="sr-only">(current)</span></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item"><a class="page-link" href="/Home/Index?currentPage=@(i+1)">@(i+1)</a></li>
+                }
+
+
+            }
+            
+                @if (Model.CurrentPage == Model.TotalPages)
+                {
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+                }
+                else
+                {
+                    <li class="page-item">
+                    <a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage+1)">Next</a>
+                </li>
+                }
+                
+           
+
+        </ul>
+    </nav>
+}
+
+<script>
+    const loadManga = (mangaId) =>{
+        window.location = '/Home/MangaDetails?mangaId=' + mangaId;
+    }
+</script>
+
+
