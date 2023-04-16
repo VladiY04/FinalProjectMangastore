@@ -22,13 +22,36 @@ namespace FinalProject.Controllers
 
         public IActionResult Index(int currentPage = 1)
         {
+            //var skip = (currentPage - 1) * 3;
+            //var take = 3;
+
+            //var manga = this.mangaService.GetAll(skip, take);
+            //var totalMangaCount = this.mangaService.GetMangaCount();
+
+            //var totalPages = totalMangaCount / 3 ;
+            //if (totalMangaCount % 3 > 0)
+            //{
+            //    totalPages++;
+            //}
+
+            //var model = new MangaModelViewList
+            //{
+            //    List = GetMangaViewModel(manga),
+            //    CurrentPage = currentPage,
+            //    TotalPages = totalPages,
+            //};
+            return View(/* model*/);
+        }
+
+        public IActionResult CatalogPage(int currentPage = 1)
+        {
             var skip = (currentPage - 1) * 3;
             var take = 3;
 
             var manga = this.mangaService.GetAll(skip, take);
             var totalMangaCount = this.mangaService.GetMangaCount();
 
-            var totalPages = totalMangaCount / 3 ;
+            var totalPages = totalMangaCount / 3;
             if (totalMangaCount % 3 > 0)
             {
                 totalPages++;
@@ -52,7 +75,7 @@ namespace FinalProject.Controllers
         public IActionResult EditManga(MangaViewModel manga)
         {
             this.mangaService.Update(GetMangaDataModel(manga));
-            return RedirectToAction("Index");
+            return RedirectToAction("CatalogPage");
         }
 
         public IActionResult MangaDetails(int mangaId)
@@ -73,7 +96,7 @@ namespace FinalProject.Controllers
         public IActionResult AddManga(MangaViewModel manga)
         {
             this.mangaService.Add(GetMangaDataModel(manga));
-            return RedirectToAction("Index");
+            return RedirectToAction("CatalogPage");
         }
 
         public IActionResult Privacy()

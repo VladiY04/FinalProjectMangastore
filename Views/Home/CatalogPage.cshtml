@@ -1,12 +1,11 @@
 ﻿@model MangaModelViewList
 
-<h1>Manga Store</h1>
-    <h2>Welcome to our manga store</h2>
-    <div>Would you like to check out our <a href="/Home/CatalogPage"> manga colection.</a></div>
-<a href="/Home/CatalogPage" class="Button">Go to catalog</a>
+@if (Model == null || Model.List == null || Model.List.Count == 0)
+{
+    <h2>No available manga at the moment</h2>
+    <div>Maybe you want to<a href="/Home/AddManga"> add a manga</a></div>
 
-@*<button class="btn btn-primary <a href=" /Home/CatalogPage">">Go to Catalog</a> </button>*@
-@*}
+}
 else
 {
 
@@ -36,21 +35,21 @@ else
     }
     <nav aria-label="...">
         <ul class="pagination">
-            
-                @if(Model.CurrentPage == 1)
-                {
+
+            @if (Model.CurrentPage == 1)
+            {
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
                 </li>
             }
             else
             {
-                 <li class="page-item ">
+                <li class="page-item ">
                     <a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage-1)" tabindex="-1">Previous</a>
                 </li>
             }
-                
-            
+
+
             @for (int i = 0; i < Model.TotalPages; i++)
             {
                 @if (i + 1 == Model.CurrentPage)
@@ -61,35 +60,33 @@ else
                 }
                 else
                 {
-                    <li class="page-item"><a class="page-link" href="/Home/Index?currentPage=@(i+1)">@(i+1)</a></li>
+                    <li class="page-item"><a class="page-link" href="/Home/Index?currentPage=@(i+1)">@(i + 1)</a></li>
                 }
 
 
             }
-            
-                @if (Model.CurrentPage == Model.TotalPages)
-                {
+
+            @if (Model.CurrentPage == Model.TotalPages)
+            {
                 <li class="page-item disabled">
                     <a class="page-link" href="#">Next</a>
                 </li>
-                }
-                else
-                {
-                    <li class="page-item">
+            }
+            else
+            {
+                <li class="page-item">
                     <a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage+1)">Next</a>
                 </li>
-                }
-                
-           
+            }
+
+
 
         </ul>
     </nav>
 }
 
 <script>
-    const loadManga = (mangaId) =>{
+    const loadManga = (mangaId) => {
         window.location = '/Home/MangaDetails?mangaId=' + mangaId;
     }
-</script>*@
-
-
+</script>
