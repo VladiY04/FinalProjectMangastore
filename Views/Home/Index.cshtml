@@ -1,12 +1,28 @@
 ﻿@model MangaModelViewList
+<style>
+    .contact-btn {
+        background: #56944a;
+        color: white;
+        padding: 6px 20px;
+        border: none !important;
+        border-radius: 40px;
+        font-weight: bold;
+        margin-top:20px;
+    }
 
+        .contact-btn:hover {
+            background: #c4c4c4;
+            color: #56944a;
+        }
+</style>
 <h1>Manga Store</h1>
+
     <div>Welcome to our manga store</div>
 <p>Our aim is to offer the full range of foreign literature in the main world languages. 
     Every day we select for you titles in different languages, genres and thus complete the assortment, numbering millions of books titles. 
     With us, there are no limits for books. That is why you will always find what you are looking</p>
     <div>Would you like to check out our <a href="/Home/CatalogPage"> manga colection.</a></div>
-<a href="/Home/CatalogPage" class="Button">Go to catalog</a>
+<p style="margin-top:20px"><a href="/Home/CatalogPage" class="Button contact-btn">Go to catalog</a></p>
 <div></div>
 
 @*<button class="btn btn-primary <a href=" /Home/CatalogPage">">Go to Catalog</a> </button>*@
