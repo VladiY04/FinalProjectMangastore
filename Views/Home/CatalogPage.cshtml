@@ -6,8 +6,8 @@
     }
 
     /*.manga-box-container {
-        //display: flex;
-    }*/
+            //display: flex;
+        }*/
 
     .manga-box {
         background: #d9d9d9 !important;
@@ -25,9 +25,9 @@
         width: 300px;
     }
 
-    .img-thumbnail img {
-        width: 300px;
-    }
+        .img-thumbnail img {
+            width: 300px;
+        }
 
     .bottom-info {
         margin-left: 0px;
@@ -40,6 +40,7 @@
         }
 </style>
 
+
 @if (Model == null || Model.List == null || Model.List.Count == 0)
 {
     <h2>No available manga at the moment</h2>
@@ -47,16 +48,54 @@
 }
 else
 {
+
     <div class="manga-box-container">
+        <style>
+            .m-top {
+                margin-top: 15px;
+            }
+
+            .manga-box-container {
+                display: flex;
+            }
+
+            .manga-box {
+                background: #d9d9d9 !important;
+                border-radius: 10px;
+                padding: 25px 20px;
+                width: 100%;
+                margin-right: 1%;
+            }
+
+                .manga-box:hover {
+                    background: #b7b7b7 !important;
+                }
+
+            .img-thumbnail img {
+                width: 100%;
+            }
+
+            .bottom-info {
+                margin-left: 0px;
+                margin-right: 0px;
+                justify-content: space-between;
+            }
+
+                .bottom-info > div {
+                    margin-right: 15px;
+                }
+        </style>
+
         @foreach (var manga in Model.List)
         {
+          
             <div onclick="loadManga('@manga.Id')" id="manga-container" class="container manga-box">
                 <div class="manga-box-img-cont">
-                    <img src="@manga.PictureUrl" class="img-thumbnail" />
+                    <img src="@manga.PictureUrl" class="img-thumbnail"   />
                 </div>
                 <h4>@manga.Title</h4>
                 <h5>By @manga.Author</h5>
-                <div class="manga-box-description">
+                <div class="manga-box-description text-center">
                     @manga.Description
                 </div>
                 <div class="row bottom-info">

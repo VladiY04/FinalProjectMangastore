@@ -1,0 +1,32 @@
+﻿@*@model MangaModelViewList
+
+<h1>Dyrabyra</h1>
+
+<style>
+    .contact-btn {
+        background: #56944a;
+        color: white;
+        padding: 6px 20px;
+        border: none !important;
+        border-radius: 40px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+
+        .contact-btn:hover {
+            background: #c4c4c4;
+            color: #56944a;
+        }
+</style>
+<div>
+    @foreach (var manga in Model.List)
+        {
+    <p onclick="loadManga'('@manga.Id')" style="margin-top:20px"><a href="/Home/MangaDetails" class="Button contact-btn">Edit Manga</a></p>
+   *
+</div>
+
+<script>
+    const loadManga = (mangaId) => {
+        window.location = '/Home/MangaDetails?mangaId=' + mangaId;
+    }
+</script>*@
