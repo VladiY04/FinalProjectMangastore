@@ -28,9 +28,8 @@
     <input hidden asp-for="Id"/>
 
     <div>
-        <button class="btn btn-primary">Edit manga</button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#edit-modal">Edit</button>
         <button type="button" class="btn btn-outline-danger  " data-toggle="modal" data-target="#delete-modal">Delete</button>
-
     </div>
     
 </form>
@@ -55,16 +54,60 @@
     </div>
 </div>
 
-    <script>
-        const deleteManga = () =>{
-        fetch("/Home/Delete?mangaId="+@Model.Id)
-            .then(() => redirectToIndex()
-            .catch((error) => {
-                console.error("Error:", error);
-            }));
-        }
 
-        const redirectToIndex = () =>{
-            window.location="/Home/CatalogPage";
-        }
-    </script>
+
+<script>
+    const deleteManga = () => {
+        fetch("/Home/Delete?mangaId=" + @Model.Id)
+            .then(() => redirectToCatalogPage()
+                .catch((error) => {
+                    console.error("Error:", error);
+                }));
+    }
+
+    const redirectToCatalogPage = () => {
+        window.location = "/Home/CatalogPage";
+    }
+</script>
+
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button onclick="editManga()" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/Home/Authors";
+    };
+</script>
+
+
+<script>
+    const editManga = () => {
+        fetch("/Home/Editmanga?(GetMangaDataModel(manga))" + @Model.Id)
+            .then(() => redirectToIndex()
+                .catch((error) => {
+                    console.error("Error:", error);
+                }));
+    }
+
+    const redirectToCatalogPage = () => {
+        window.location = "/Home/CatalogPage";
+    }
+</script>
+

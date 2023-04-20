@@ -5,9 +5,9 @@
         margin-top: 15px;
     }
 
-    /*.manga-box-container {
-            //display: flex;
-        }*/
+    .manga-box-container {
+            display: flex;
+        }
 
     .manga-box {
         background: #d9d9d9 !important;
@@ -43,8 +43,17 @@
 
 @if (Model == null || Model.List == null || Model.List.Count == 0)
 {
-    <h2>No available manga at the moment</h2>
-    <div>Maybe you want to<a href="/Home/AddManga"> add a manga</a></div>
+    <h2>Seems like there is no available manga at the moment.</h2>
+    <div>Help us expand our collection by<a href="/Home/AddManga"> adding a new manga</a></div>
+    <button id="myButton" class="float-left submit-button">Add manga</button>
+
+    <script type="text/javascript">
+        document.getElementById("myButton").onclick = function () {
+            location.href = "/Home/Addmanga";
+        };
+    </script>
+
+    
 }
 else
 {
@@ -93,7 +102,8 @@ else
                 <div class="manga-box-img-cont">
                     <img src="@manga.PictureUrl" class="img-thumbnail"   />
                 </div>
-                <h4>@manga.Title</h4>
+
+                <div><h4 style="color:#991a01;">@manga.Title</h4></div>
                 <h5>By @manga.Author</h5>
                 <div class="manga-box-description text-center">
                     @manga.Description
@@ -102,7 +112,7 @@ else
                     <div class="manga-box-price">
                         Price: @manga.Price
                     </div>
-                    <div class="anga-box-genre text-right">
+                    <div class="manga-box-genre text-right">
                         Genre: @manga.Genre
                     </div>
                 </div>

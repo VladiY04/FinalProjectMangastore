@@ -20,21 +20,21 @@ namespace FinalProject.Controllers
             this.mangaService = mangaService;
         }
 
-        public IActionResult Index(int currentPage = 1)
+        public IActionResult Index()
         {
             return View();
         }
 
         public IActionResult CatalogPage(int currentPage = 1)
         {
-            var skip = (currentPage - 1) * 6;
-            var take = 6;
+            var skip = (currentPage - 1) * 3;
+            var take = 3;
 
             var manga = this.mangaService.GetAll(skip, take);
             var totalMangaCount = this.mangaService.GetMangaCount();
 
-            var totalPages = totalMangaCount / 6;
-            if (totalMangaCount % 6 > 0)
+            var totalPages = totalMangaCount / 3;
+            if (totalMangaCount % 3 > 0)
             {
                 totalPages++;
             }
