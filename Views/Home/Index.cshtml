@@ -7,109 +7,76 @@
         border: none !important;
         border-radius: 40px;
         font-weight: bold;
-        margin-top:20px;
+        margin-top: 20px;
+        text-decoration: none;
     }
 
         .contact-btn:hover {
             background: #c4c4c4;
             color: #56944a;
+            text-decoration: none;
         }
-</style>
-<h1>Manga Store</h1>
 
-    <div>Welcome to our manga store</div>
-<p>Our aim is to offer the full range of foreign literature in the main world languages. 
-    Every day we select for you titles in different languages, genres and thus complete the assortment, numbering millions of books titles. 
-    With us, there are no limits for books. That is why you will always find what you are looking</p>
-    <div>Would you like to check out our <a href="/Home/CatalogPage"> manga colection.</a></div>
-<p style="margin-top:20px"><a href="/Home/CatalogPage" class="Button contact-btn">Go to catalog</a></p>
+    .flex-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .triple-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 30%;
+        margin-right: 5%;
+        text-align: center;
+    }
+</style>
+<div class="flex-container">
+    <div class="intro-text-container">
+        <h1 style="margin-bottom:20px">Welcome to Your One-Stop Shop for All Things Manga!</h1>
+        <p>Are you a die-hard manga fan looking for your next read? Look no further than our online manga bookstore! We have an extensive collection of manga titles from all genres, including action, romance, fantasy, and more. Our selection includes popular series like Naruto, One Piece, Attack on Titan, and My Hero Academia, as well as lesser-known gems waiting to be discovered.</p>
+        <p style="margin-top:30px"><a href="/Home/CatalogPage" class="Button contact-btn">Visit Catalog</a></p>
+    </div>
+    <div class="intro-img-container">
+        <img src="https://media.istockphoto.com/id/1216658448/photo/stack-of-colorful-books-isolated-on-white-background-collection-of-different-books-hardback.jpg?s=170667a&w=0&k=20&c=AYTKsn6gnT_VnxMFIcygoOm2RiMwcOaTNkq5LRcDvyg=" alt="books" style="margin-left: 20px;" />
+    </div>
+</div>
+
+<div class="flex-container" style="margin-top: 60px; margin-bottom: 120px;">
+    <div class="triple-item">
+        <img src="https://static.vecteezy.com/system/resources/previews/003/808/019/original/open-book-icon-book-symbol-handbook-in-outline-style-free-vector.jpg" style="width: 160px" />
+        <h4>Explore Books</h4>
+        <p>Whether you're a seasoned manga reader or just getting started, we have something for everyone.</p>
+    </div>
+
+    <div class="triple-item">
+        <img src="https://thumbs.dreamstime.com/b/author-icon-novelist-211423263.jpg" style="width: 160px" />
+        <h4>Explore Authors</h4>
+        <p>Explore our Author section to discover new manga creators and to deepen your appreciation for your favorite series.</p>
+    </div>
+
+    <div class="triple-item">
+        <img src="https://i.pinimg.com/originals/2e/05/92/2e059263ff4188c3194d9a22a45f6e9d.png" style="width: 160px" />
+        <h4>Create Manga</h4>
+        <p>You can create and add to our library of vast mangas and sell your product right from the get go.</p>
+    </div>
+</div>
+
+
+<div class="flex-container" style="margin-bottom: 60px">
+    <div class="secondary-img-container">
+        <img src="https://culture.ec.europa.eu/sites/default/files/2023-02/day-authors-2023.png" alt="authors" style="width: 550px; border-radius: 20px; margin-right: 40px;" />
+    </div>
+    <div class="secondary-text-container">
+        <h2 style="margin-bottom:20px">The Authors Behind Your Favorite Series</h2>
+        <p>Our online manga bookstore features a wide variety of manga genres, each with its own unique group of creators. We've assembled profiles of some of the most popular and influential manga authors in the industry, along with a selection of their works. Don't miss out on the opportunity to learn more about the creators who bring your favorite manga stories to life. Browse our Author section today and discover the wide range of talent in the manga industry!</p>
+        <p style="margin-top:30px"><a href="/Home/Authors" class="Button contact-btn">View Authors</a></p>
+    </div>
+</div>
 <div></div>
 
-@*<button class="btn btn-primary <a href=" /Home/CatalogPage">">Go to Catalog</a> </button>*@
-@*}
-else
-{
-
-    @foreach (var manga in Model.List)
-    {
-        <div onclick="loadManga('@manga.Id')" id="manga-container" class="container">
-            <h4>@manga.Title : @manga.Author</h4>
-            <div class="row">
-                <div class="col-md-3">
-                    <img src="@manga.PictureUrl" class="img-thumbnail" />
-                </div>
-                <div class="col-md-9">
-                    @manga.Description
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    Price: @manga.Price
-                </div>
-                <div class="col text-right">
-                    Genre: @manga.Genre
-                </div>
-            </div>
-        </div>
-        <hr />
-
-    }
-    <nav aria-label="...">
-        <ul class="pagination">
-            
-                @if(Model.CurrentPage == 1)
-                {
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-            }
-            else
-            {
-                 <li class="page-item ">
-                    <a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage-1)" tabindex="-1">Previous</a>
-                </li>
-            }
-                
-            
-            @for (int i = 0; i < Model.TotalPages; i++)
-            {
-                @if (i + 1 == Model.CurrentPage)
-                {
-                    <li class="page-item active">
-                        <a class="page-link" href="/Home/Index?currentPage=@(i+1)">@(i + 1) <span class="sr-only">(current)</span></a>
-                    </li>
-                }
-                else
-                {
-                    <li class="page-item"><a class="page-link" href="/Home/Index?currentPage=@(i+1)">@(i+1)</a></li>
-                }
 
 
-            }
-            
-                @if (Model.CurrentPage == Model.TotalPages)
-                {
-                <li class="page-item disabled">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-                }
-                else
-                {
-                    <li class="page-item">
-                    <a class="page-link" href="/Home/Index?currentPage=@(Model.CurrentPage+1)">Next</a>
-                </li>
-                }
-                
-           
-
-        </ul>
-    </nav>
-}
-
-<script>
-    const loadManga = (mangaId) =>{
-        window.location = '/Home/MangaDetails?mangaId=' + mangaId;
-    }
-</script>*@
 
 
